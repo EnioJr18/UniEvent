@@ -16,7 +16,7 @@ Cada integrante deve criar uma **venv própria dentro de `backend/`** antes de i
 A pasta usada pelo projeto é:
 
 ```text
-backend/.venv/
+backend/venv/
 ```
 
 Ela já é ignorada pelo Git e **não deve ser commitada**.
@@ -27,16 +27,16 @@ Linux/macOS:
 
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate
+python -m venv venv
+source venv/bin/activate
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd backend
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
+py -m venv venv
+.\venv\Scripts\Activate.ps1
 ```
 
 Após ativar, atualize o `pip` e instale as dependências:
@@ -46,7 +46,7 @@ python -m pip install --upgrade pip
 pip install -r requirements/development.txt
 ```
 
-> Sempre ative a `.venv` antes de executar `manage.py`, instalar dependências ou trabalhar no backend.
+> Sempre ative a `venv` antes de executar `manage.py`, instalar dependências ou trabalhar no backend.
 
 Para sair do ambiente virtual:
 
@@ -105,8 +105,8 @@ Depois substitua apenas o valor de `DATABASE_URL` pela connection string real do
 
 ```bash
 cd backend
-python -m venv .venv
-source .venv/bin/activate
+python -m venv venv
+source venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements/development.txt
 cp .env.example .env
@@ -120,8 +120,8 @@ python manage.py runserver
 
 ```powershell
 cd backend
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
+py -m venv venv
+.\venv\Scripts\Activate.ps1
 py -m pip install --upgrade pip
 pip install -r requirements/development.txt
 Copy-Item .env.example .env
