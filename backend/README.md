@@ -9,6 +9,51 @@ API do UniEvent desenvolvida com Django e Django REST Framework.
 - ambiente virtual Python
 - acesso ao projeto UniEvent no Neon
 
+## Ambiente virtual Python (.venv)
+
+Cada integrante deve criar uma **venv própria dentro de `backend/`** antes de instalar as dependências do projeto. Isso mantém as bibliotecas do UniEvent isoladas das demais instalações de Python da máquina.
+
+A pasta usada pelo projeto é:
+
+```text
+backend/.venv/
+```
+
+Ela já é ignorada pelo Git e **não deve ser commitada**.
+
+### Criar a venv
+
+Linux/macOS:
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Windows PowerShell:
+
+```powershell
+cd backend
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Após ativar, atualize o `pip` e instale as dependências:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements/development.txt
+```
+
+> Sempre ative a `.venv` antes de executar `manage.py`, instalar dependências ou trabalhar no backend.
+
+Para sair do ambiente virtual:
+
+```bash
+deactivate
+```
+
 ## Banco de dados — Neon PostgreSQL
 
 O PostgreSQL do UniEvent é hospedado no Neon.
