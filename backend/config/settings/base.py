@@ -4,9 +4,12 @@ import os
 import secrets
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from dotenv import load_dotenv
 
-# A random fallback keeps local bootstrap usable without committing a secret.
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv(BASE_DIR / ".env")
+
+# Local development can fall back to a temporary random key.
 # Production explicitly requires DJANGO_SECRET_KEY in production.py.
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY") or secrets.token_urlsafe(50)
 
@@ -67,12 +70,15 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-# Temporary local database only for Issue #1 bootstrap.
-# PostgreSQL replaces this configuration in Issue #2.
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DATABASE_NAME", "unievent"),
+        "USER": os.getenv("DATABASE_USER", "postgres"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD", ""),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
+        "PORT": os.getenv("DATABASE_PORT", "5432"),
+        "CONN_MAX_AGE": int(os.getenv("DATABASE_CONN_MAX_AGE", "60")),
     }
 }
 
