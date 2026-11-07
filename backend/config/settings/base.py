@@ -27,7 +27,13 @@ THIRD_PARTY_APPS = [
     "rest_framework",
 ]
 
-LOCAL_APPS: list[str] = []
+LOCAL_APPS = [
+    "apps.accounts.apps.AccountsConfig",
+    "apps.events.apps.EventsConfig",
+    "apps.registrations.apps.RegistrationsConfig",
+    "apps.attendance.apps.AttendanceConfig",
+    "apps.certificates.apps.CertificatesConfig",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -91,6 +97,6 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "common.pagination.DefaultPageNumberPagination",
     "PAGE_SIZE": 20,
 }
